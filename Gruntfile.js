@@ -46,6 +46,45 @@ module.exports = function(grunt) {
           './build/assets/scripts/main.min.js': ['./src/assets/scripts/js/*.js']
         }
       }
+    },
+
+    watch: {
+      options: {
+        livereload: true
+      },
+      sass: {
+        files: ['./src/assets/styles/sass/*.scss'],
+        tasks: ['sass', 'cssmin']
+      },
+      jsx: {
+        files: ['./src/assets/scripts/jsx/*.jsx'],
+        tasks: ['react', 'uglify']
+      },
+      index: {
+        files: ['./src/index.html'],
+        tasks: ['copy']
+      }
+    },
+
+    copy: {
+      index: {
+        files: [{
+          expand: true,
+          cwd: './src/',
+          src: ['index.html'],
+          dest: './build/'
+        }]
+      }
+    },
+
+    express: {
+      all: {
+        options: {
+          hostname: 'localhost',
+          bases: './build/',
+          livereload: true
+        }
+      }
     }
   });
 
@@ -53,6 +92,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-react');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-express');
 
-  grunt.registerTask('default', ['sass', 'cssmin', 'react', 'uglify']);
+  grunt.registerTask('default', ['sass', 'cssmin', 'react', 'uglify', 'copy']);
+  grunt.registerTask('server', ['default', 'express', 'watch']);
 };
