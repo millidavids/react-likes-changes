@@ -1,1 +1,1 @@
-var test = 'testing';
+var React = require('react');
