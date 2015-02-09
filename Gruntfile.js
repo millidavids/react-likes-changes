@@ -114,6 +114,12 @@ module.exports = function(grunt) {
           cleanup: true
         }
       }
+    },
+
+    browserifyBower: {
+      vendor: {
+
+      }
     }
   });
 
