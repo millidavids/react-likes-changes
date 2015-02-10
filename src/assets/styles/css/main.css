@@ -1,10 +1,13 @@
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none; }
-nav li {
-  display: inline-block; }
-nav a {
-  display: block;
-  padding: 6px 12px;
-  text-decoration: none; }
+body {
+  font-family: "Arial Black", Gadget, sans-serif;
+  width: auto;
+  margin-left: 10%;
+  margin-right: 10%; }
+
+.likesAndChanges {
+  width: 100%;
+  text-align: center; }
+
+.addLikeOrChange {
+  width: 100%;
+  border: 2px solid red; }

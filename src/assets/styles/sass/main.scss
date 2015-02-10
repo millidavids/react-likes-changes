@@ -1,15 +1,18 @@
-nav {
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
+$default-font: "Arial Black", Gadget, sans-serif;
 
-  li { display: inline-block; }
+body {
+  font-family: $default-font;
+  width: auto;
+  margin-left: 10%;
+  margin-right: 10%;
+}
 
-  a {
-    display: block;
-    padding: 6px 12px;
-    text-decoration: none;
-  }
+.likesAndChanges {
+  width: 100%;
+  text-align: center;
+}
+
+.addLikeOrChange {
+  width: 100%;
+  border: 2px solid red;
 }
