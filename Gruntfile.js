@@ -58,7 +58,7 @@ module.exports = function(grunt) {
       },
       jsx: {
         files: ['./src/assets/scripts/jsx/*.jsx'],
-        tasks: ['react', 'uglify']
+        tasks: ['react', 'uglify', 'browserify']
       },
       index: {
         files: ['./src/index.html'],
@@ -85,6 +85,14 @@ module.exports = function(grunt) {
           livereload: true
         }
       }
+    },
+
+    browserify: {
+      build: {
+        files: {
+          'build/assets/scripts/browserified.min.js': ['build/assets/scripts/main.min.js'],
+        }
+      }
     }
   });
 
@@ -95,7 +103,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-express');
+  grunt.loadNpmTasks('grunt-browserify');
 
-  grunt.registerTask('default', ['sass', 'cssmin', 'react', 'uglify', 'copy']);
+  grunt.registerTask('default', ['sass', 'cssmin', 'react',
+                                 'uglify', 'browserify', 'copy']);
   grunt.registerTask('server', ['default', 'express', 'watch']);
 };
