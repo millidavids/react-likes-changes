@@ -4,7 +4,7 @@ var LikesAndChanges = React.createClass({
   render: function() {
     return (
       <div className='likesAndChanges'>
-        <h2>Likes and Changes</h2>
+        <h1>Likes and Changes</h1>
         <AddLikeOrChange />
         <Likes />
         <Changes />
@@ -17,9 +17,10 @@ var AddLikeOrChange = React.createClass({
   render: function() {
     return (
       <div className='addLikeOrChange'>
-        <button className='btn btn-default'>Like!</button>
-        <textarea rows='3' cols='30'></textarea>
-        <button className='btn btn-default'>Change!</button>
+
+        <textarea rows='3' cols='30' className='form-control'></textarea>
+        <button className='btn btn-primary'>Like!</button>
+        <button className='btn btn-danger'>Change!</button>
       </div>
     );
   }

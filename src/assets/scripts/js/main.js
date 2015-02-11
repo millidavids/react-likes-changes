@@ -4,7 +4,7 @@ var LikesAndChanges = React.createClass({displayName: "LikesAndChanges",
   render: function() {
     return (
       React.createElement("div", {className: "likesAndChanges"}, 
-        React.createElement("h2", null, "Likes and Changes"), 
+        React.createElement("h1", null, "Likes and Changes"), 
         React.createElement(AddLikeOrChange, null), 
         React.createElement(Likes, null), 
         React.createElement(Changes, null)
@@ -17,9 +17,10 @@ var AddLikeOrChange = React.createClass({displayName: "AddLikeOrChange",
   render: function() {
     return (
       React.createElement("div", {className: "addLikeOrChange"}, 
-        React.createElement("button", {className: "btn btn-default"}, "Like!"), 
-        React.createElement("textarea", {rows: "3", cols: "30"}), 
-        React.createElement("button", {className: "btn btn-default"}, "Change!")
+
+        React.createElement("textarea", {rows: "3", cols: "30", className: "form-control"}), 
+        React.createElement("button", {className: "btn btn-primary"}, "Like!"), 
+        React.createElement("button", {className: "btn btn-danger"}, "Change!")
       )
     );
   }
