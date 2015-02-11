@@ -67,7 +67,7 @@ module.exports = function(grunt) {
     },
 
     copy: {
-      index: {
+      root_files: {
         files: [{
           expand: true,
           cwd: './src/',
@@ -102,10 +102,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-react');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-express');
   grunt.loadNpmTasks('grunt-browserify');
 
   grunt.registerTask('default', ['sass', 'cssmin', 'react',
                                  'uglify', 'browserify', 'copy']);
-  grunt.registerTask('server', ['default', 'express', 'watch']);
 };
