@@ -9,5 +9,13 @@ body {
   text-align: center; }
 
 .addLikeOrChange {
-  width: 100%;
-  border: 2px solid red; }
+  width: 100%; }
+
+.likes {
+  color: #1e2878; }
+
+.changes {
+  color: #78281e; }
+
+.addLikeOrChange .btn {
+  margin: 20px; }

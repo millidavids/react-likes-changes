@@ -1,4 +1,6 @@
 $default-font: "Arial Black", Gadget, sans-serif;
+$dark-blue: rgba(30, 40, 120,1.0);
+$dark-red: rgba(120, 40, 30,1.0);
 
 body {
   font-family: $default-font;
@@ -14,5 +16,23 @@ body {
 
 .addLikeOrChange {
   width: 100%;
-  border: 2px solid red;
+}
+
+.likes {
+  color: $dark-blue;
+}
+
+.changes {
+  color: $dark-red;
+}
+
+.addLikeOrChange {
+  %textarea {
+    display: inline-block;
+    margin: 20px;
+  }
+
+  .btn {
+    margin: 20px;
+  }
 }
