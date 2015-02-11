@@ -49,9 +49,9 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      options: {
-        livereload: true
-      },
+      // options: {
+      //   livereload: true
+      // },
       sass: {
         files: ['./src/assets/styles/sass/*.scss'],
         tasks: ['sass', 'cssmin']
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
         options: {
           hostname: 'localhost',
           bases: './build/',
-          livereload: true
+          // livereload: true
         }
       }
     },

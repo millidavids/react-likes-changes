@@ -11,18 +11,18 @@
 require 'webrick'
 require 'json'
 
-likes_and_changes = react_version = JSON.parse(File.read('./build/likes_and_changes.json'))
+likes_and_changes = react_version = JSON.parse(File.read('./_likes_and_changes.json'))
 
 puts 'Server started: http://localhost:3000/'
 
-root = File.expand_path './build/'
+root = File.expand_path './build'
 server = WEBrick::HTTPServer.new :Port => 3000, :DocumentRoot => root
 
-server.mount_proc 'likes_and_changes.json' do |req, res|
+server.mount_proc '/likes_and_changes.json' do |req, res|
   if req.request_method == 'POST'
     # Assume it's well formed
     likes_and_changes << req.query
-    File.write('./build/likes_and_changes.json', likes_and_changes.to_json)
+    File.write('./_likes_and_changes.json', likes_and_changes.to_json)
   end
 
   # always return json

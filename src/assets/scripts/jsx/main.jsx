@@ -13,32 +13,37 @@ var LikesAndChanges = React.createClass({
       }.bind(this)
     });
   },
-  handleLikeOrChangeClick: function(like) {
+  handleLikeOrChangeClick: function(data) {
     var likes_and_changes = this.state.data;
-    likes_and_changes.push(like);
+    likes_and_changes.push(data);
     this.setState({data: likes_and_changes}, function() {
+      console.log(likes_and_changes);
       $.ajax({
         url: this.props.url,
         dataType: 'json',
         type: 'POST',
         data: likes_and_changes,
         success: function(data) {
-          this.setState({data: data});
+          this.loadLikesAndChangesFromServer;
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
         }.bind(this)
       });
     });
+    this.loadLikesAndChangesFromServer();
   },
   getInitialState: function() {
     return {data: []};
+  },
+  componentDidMount: function() {
+    this.loadLikesAndChangesFromServer();
   },
   render: function() {
     return (
       <div className='likesAndChanges'>
         <h1>Likes and Changes</h1>
-        <AddLikeOrChange onLikeOrChangeSubmit={this.handleLikeOrChangeClick}/>
+        <AddLikeOrChange onAddLikeOrChangeSubmit={this.handleLikeOrChangeClick}/>
         <Likes />
         <Changes />
       </div>
@@ -54,7 +59,7 @@ var AddLikeOrChange = React.createClass({
     if (!text) {
       return;
     }
-    this.props.onLikeOrChangeSubmit({type: type, text: text});
+    this.props.onAddLikeOrChangeSubmit({type: type, text: text});
     this.refs.text.getDOMNode().value = '';
     return;
   },
@@ -92,6 +97,6 @@ var Changes = React.createClass({
 });
 
 React.render(
-  <LikesAndChanges url='likes_and_changes.json' pollInterval={2000} />,
+  <LikesAndChanges url='likes_and_changes.json' />,
   document.body
 );
