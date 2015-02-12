@@ -67,7 +67,6 @@ var AddLikeOrChange = React.createClass({
         <div className='row'>
           <textarea className='form-control' cols='40' rows='2' placeholder='Say something...' ref='text' />
         </div>
-        <button id='pdf' className='btn btn-default'>PDF</button>
         <div className='row'>
           <div className='col-xs-6'>
             <input type="submit" className='btn btn-lg btn-primary' value='Like' />

@@ -67,7 +67,6 @@ var AddLikeOrChange = React.createClass({displayName: "AddLikeOrChange",
         React.createElement("div", {className: "row"}, 
           React.createElement("textarea", {className: "form-control", cols: "40", rows: "2", placeholder: "Say something...", ref: "text"})
         ), 
-        React.createElement("button", {id: "pdf", className: "btn btn-default"}, "PDF"), 
         React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-xs-6"}, 
             React.createElement("input", {type: "submit", className: "btn btn-lg btn-primary", value: "Like"})
