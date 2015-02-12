@@ -13,10 +13,19 @@ body {
   width: 100%;
   vertical-align: middle;
   text-align: center;
+  font-size: 150%;
 }
 
 .addLikeOrChange {
   width: 100%;
+
+  textarea {
+    font-size: 150%;
+  }
+
+  .btn-lg {
+    font-size: 150%;
+  }
 }
 
 .likes {
@@ -30,10 +39,6 @@ body {
 .addLikeOrChange {
   textarea {
     display: inline-block;
-    margin: 20px;
-  }
-
-  .btn {
     margin: 20px;
   }
 }

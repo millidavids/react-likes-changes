@@ -68,7 +68,6 @@ var LikesAndChanges = React.createClass({displayName: "LikesAndChanges",
     });
     return (
       React.createElement("div", {className: "likesAndChanges"}, 
-        React.createElement("h1", null, "Likes and Changes"), 
         React.createElement(AddLikeOrChange, {onAddLikeOrChangeSubmit: this.handleLikeOrChangeClick}), 
         React.createElement(Likes, {data: likes}), 
         React.createElement(Changes, {data: changes})
@@ -92,9 +91,17 @@ var AddLikeOrChange = React.createClass({displayName: "AddLikeOrChange",
   render: function() {
     return (
       React.createElement("form", {className: "addLikeOrChange form-group", onSubmit: this.handleSubmit}, 
-        React.createElement("textarea", {className: "form-control", cols: "40", rows: "5", placeholder: "Say something...", ref: "text"}), 
-        React.createElement("input", {type: "submit", className: "btn btn-primary", value: "Like"}), 
-        React.createElement("input", {type: "submit", className: "btn btn-danger", value: "Change"})
+        React.createElement("div", {className: "row"}, 
+          React.createElement("textarea", {className: "form-control", cols: "40", rows: "2", placeholder: "Say something...", ref: "text"})
+        ), 
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "col-xs-6"}, 
+            React.createElement("input", {type: "submit", className: "btn btn-lg btn-primary", value: "Like"})
+          ), 
+          React.createElement("div", {className: "col-xs-6"}, 
+            React.createElement("input", {type: "submit", className: "btn btn-lg btn-danger", value: "Change"})
+          )
+        )
       )
     );
   }
@@ -112,7 +119,6 @@ var Likes = React.createClass({displayName: "Likes",
     });
     return (
       React.createElement("div", {className: "likes col-xs-6"}, 
-        React.createElement("h3", null, "Likes"), 
         React.createElement("hr", null), 
         React.createElement("ul", {className: "fa-ul"}, 
           likeNodes
@@ -134,7 +140,6 @@ var Changes = React.createClass({displayName: "Changes",
     });
     return (
       React.createElement("div", {className: "changes col-xs-6"}, 
-        React.createElement("h3", null, "Changes"), 
         React.createElement("hr", null), 
         React.createElement("ul", {className: "fa-ul"}, 
           changeNodes

@@ -7,10 +7,15 @@ body {
 .likesAndChanges {
   width: 100%;
   vertical-align: middle;
-  text-align: center; }
+  text-align: center;
+  font-size: 150%; }
 
 .addLikeOrChange {
   width: 100%; }
+  .addLikeOrChange textarea {
+    font-size: 150%; }
+  .addLikeOrChange .btn-lg {
+    font-size: 150%; }
 
 .likes {
   color: #1e2878; }
@@ -20,8 +25,6 @@ body {
 
 .addLikeOrChange textarea {
   display: inline-block;
-  margin: 20px; }
-.addLikeOrChange .btn {
   margin: 20px; }
 
 ul {

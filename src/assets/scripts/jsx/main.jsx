@@ -68,7 +68,6 @@ var LikesAndChanges = React.createClass({
     });
     return (
       <div className='likesAndChanges'>
-        <h1>Likes and Changes</h1>
         <AddLikeOrChange onAddLikeOrChangeSubmit={this.handleLikeOrChangeClick} />
         <Likes data={likes} />
         <Changes data={changes} />
@@ -92,9 +91,17 @@ var AddLikeOrChange = React.createClass({
   render: function() {
     return (
       <form className='addLikeOrChange form-group' onSubmit={this.handleSubmit}>
-        <textarea className='form-control' cols='40' rows='5' placeholder='Say something...' ref='text' />
-        <input type="submit" className='btn btn-primary' value='Like' />
-        <input type="submit" className='btn btn-danger' value='Change' />
+        <div className='row'>
+          <textarea className='form-control' cols='40' rows='2' placeholder='Say something...' ref='text' />
+        </div>
+        <div className='row'>
+          <div className='col-xs-6'>
+            <input type="submit" className='btn btn-lg btn-primary' value='Like' />
+          </div>
+          <div className='col-xs-6'>
+            <input type="submit" className='btn btn-lg btn-danger' value='Change' />
+          </div>
+        </div>
       </form>
     );
   }
@@ -112,7 +119,6 @@ var Likes = React.createClass({
     });
     return (
       <div className='likes col-xs-6'>
-        <h3>Likes</h3>
         <hr/>
         <ul className='fa-ul'>
           {likeNodes}
@@ -134,7 +140,6 @@ var Changes = React.createClass({
     });
     return (
       <div className='changes col-xs-6'>
-        <h3>Changes</h3>
         <hr/>
         <ul className='fa-ul'>
           {changeNodes}
