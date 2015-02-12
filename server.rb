@@ -20,9 +20,6 @@ server = WEBrick::HTTPServer.new :Port => 3000, :DocumentRoot => root
 
 server.mount_proc '/likes_and_changes.json' do |req, res|
   if req.request_method == 'POST'
-    # Assume it's well formed
-    puts likes_and_changes
-    puts req.query
     likes_and_changes << req.query
     File.write('./_likes_and_changes.json', likes_and_changes.to_json)
   end

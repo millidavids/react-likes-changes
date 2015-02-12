@@ -29,3 +29,6 @@ body {
 
 ul {
   text-align: left; }
+
+hr {
+  border-top: 2px solid #ccc; }
