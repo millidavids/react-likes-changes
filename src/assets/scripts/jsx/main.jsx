@@ -1,4 +1,5 @@
 var React = require('react');
+var kramed = require('kramed');
 
 var LikesAndChanges = React.createClass({
   loadLikesAndChangesFromServer: function() {
@@ -110,10 +111,11 @@ var AddLikeOrChange = React.createClass({
 var Likes = React.createClass({
   render: function() {
     var likeNodes = this.props.data.map(function(like, index) {
+    var rawMarkup = kramed(like.text);
       return (
         <li key={index}>
           <i className=" fa-li fa fa-thumbs-o-up"></i>
-          {like.text}
+          <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
         </li>
       );
     });
@@ -131,10 +133,11 @@ var Likes = React.createClass({
 var Changes = React.createClass({
   render: function() {
     var changeNodes = this.props.data.map(function(change, index) {
+    var rawMarkup = kramed(change.text);
       return (
         <li key={index}>
           <i className="fa-li">{String.fromCharCode(916)}</i>
-          {change.text}
+          <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
         </li>
       );
     });
