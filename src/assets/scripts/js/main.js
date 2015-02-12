@@ -2,41 +2,13 @@ var React = require('react');
 var kramed = require('kramed');
 
 var LikesAndChanges = React.createClass({displayName: "LikesAndChanges",
-  loadLikesAndChangesFromServer: function() {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      success: function(data) {
-        this.setState({data: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-  },
   handleLikeOrChangeClick: function(lorc) {
     var likes_and_changes = this.state.data;
     likes_and_changes.push(lorc);
-    this.setState({data: likes_and_changes}, function() {
-      $.ajax({
-        url: this.props.url,
-        dataType: 'json',
-        type: 'POST',
-        data: lorc,
-        success: function(data) {
-          this.loadLikesAndChangesFromServer;
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-        }.bind(this)
-      });
-    });
+    this.setState({data: likes_and_changes});
   },
   getInitialState: function() {
     return {data: []};
-  },
-  componentDidMount: function() {
-    this.loadLikesAndChangesFromServer();
   },
   getLikes: function() {
     var likes = [];
@@ -95,6 +67,7 @@ var AddLikeOrChange = React.createClass({displayName: "AddLikeOrChange",
         React.createElement("div", {className: "row"}, 
           React.createElement("textarea", {className: "form-control", cols: "40", rows: "2", placeholder: "Say something...", ref: "text"})
         ), 
+        React.createElement("button", {id: "pdf", className: "btn btn-default"}, "PDF"), 
         React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-xs-6"}, 
             React.createElement("input", {type: "submit", className: "btn btn-lg btn-primary", value: "Like"})
@@ -153,6 +126,6 @@ var Changes = React.createClass({displayName: "Changes",
 });
 
 React.render(
-  React.createElement(LikesAndChanges, {url: "likes_and_changes.json"}),
+  React.createElement(LikesAndChanges, null),
   document.body
 );
