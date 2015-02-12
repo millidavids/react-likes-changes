@@ -1,5 +1,5 @@
 body {
-  font-family: "Arial Black", Gadget, sans-serif;
+  font-family: "Arial Black", sans-serif;
   width: auto;
   margin-left: 10%;
   margin-right: 10%; }
@@ -18,5 +18,11 @@ body {
 .changes {
   color: #78281e; }
 
+.addLikeOrChange textarea {
+  display: inline-block;
+  margin: 20px; }
 .addLikeOrChange .btn {
   margin: 20px; }
+
+ul {
+  text-align: left; }

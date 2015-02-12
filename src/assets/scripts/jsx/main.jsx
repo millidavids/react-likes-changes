@@ -13,16 +13,15 @@ var LikesAndChanges = React.createClass({
       }.bind(this)
     });
   },
-  handleLikeOrChangeClick: function(data) {
+  handleLikeOrChangeClick: function(lorc) {
     var likes_and_changes = this.state.data;
-    likes_and_changes.push(data);
+    likes_and_changes.push(lorc);
     this.setState({data: likes_and_changes}, function() {
-      console.log(likes_and_changes);
       $.ajax({
         url: this.props.url,
         dataType: 'json',
         type: 'POST',
-        data: likes_and_changes,
+        data: lorc,
         success: function(data) {
           this.loadLikesAndChangesFromServer;
         }.bind(this),
@@ -31,7 +30,6 @@ var LikesAndChanges = React.createClass({
         }.bind(this)
       });
     });
-    this.loadLikesAndChangesFromServer();
   },
   getInitialState: function() {
     return {data: []};
@@ -39,13 +37,41 @@ var LikesAndChanges = React.createClass({
   componentDidMount: function() {
     this.loadLikesAndChangesFromServer();
   },
+  getLikes: function() {
+    var likes = [];
+    for (object in this.state.data) {
+      if (object.type === 'like'){
+        likes.push(object);
+      }
+    }
+    return likes;
+  },
+  getChanges: function() {
+    var changes = [];
+    for (object in this.state.data) {
+      if (object.type === 'change'){
+        changes.push(object);
+      }
+    }
+    return changes;
+  },
   render: function() {
+    var likes = this.state.data.filter(function(like) {
+      if (like.type === 'Like') {
+        return like.text;
+      }
+    });
+    var changes = this.state.data.filter(function(change) {
+      if (change.type === 'Change') {
+        return change.text;
+      }
+    });
     return (
       <div className='likesAndChanges'>
         <h1>Likes and Changes</h1>
-        <AddLikeOrChange onAddLikeOrChangeSubmit={this.handleLikeOrChangeClick}/>
-        <Likes />
-        <Changes />
+        <AddLikeOrChange onAddLikeOrChangeSubmit={this.handleLikeOrChangeClick} />
+        <Likes data={likes} />
+        <Changes data={changes} />
       </div>
     );
   }
@@ -54,7 +80,7 @@ var LikesAndChanges = React.createClass({
 var AddLikeOrChange = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault(e);
-    var type = $(document.activeElement)[0].name
+    var type = $(document.activeElement)[0].value
     var text = this.refs.text.getDOMNode().value.trim();
     if (!text) {
       return;
@@ -67,8 +93,8 @@ var AddLikeOrChange = React.createClass({
     return (
       <form className='addLikeOrChange form-group' onSubmit={this.handleSubmit}>
         <textarea className='form-control' cols='40' rows='5' placeholder='Say something...' ref='text' />
-        <input name='like' type="submit" className='btn btn-primary' value='Like' />
-        <input name='change' type="submit" className='btn btn-danger' value='Change' />
+        <input type="submit" className='btn btn-primary' value='Like' />
+        <input type="submit" className='btn btn-danger' value='Change' />
       </form>
     );
   }
@@ -76,10 +102,21 @@ var AddLikeOrChange = React.createClass({
 
 var Likes = React.createClass({
   render: function() {
+    var likeNodes = this.props.data.map(function(like, index) {
+      return (
+        <li key={index}>
+          <i className=" fa-li fa fa-thumbs-o-up"></i>
+          {like.text}
+        </li>
+      );
+    });
     return (
       <div className='likes col-xs-6'>
         <h3>Likes</h3>
         <hr/>
+        <ul className='fa-ul'>
+          {likeNodes}
+        </ul>
       </div>
     )
   }
@@ -87,10 +124,21 @@ var Likes = React.createClass({
 
 var Changes = React.createClass({
   render: function() {
+    var changeNodes = this.props.data.map(function(change, index) {
+      return (
+        <li key={index}>
+          <i className="fa-li">{String.fromCharCode(916)}</i>
+          {change.text}
+        </li>
+      );
+    });
     return (
       <div className='changes col-xs-6'>
         <h3>Changes</h3>
         <hr/>
+        <ul className='fa-ul'>
+          {changeNodes}
+        </ul>
       </div>
     );
   }

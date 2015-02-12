@@ -1,4 +1,4 @@
-$default-font: "Arial Black", Gadget, sans-serif;
+$default-font: "Arial Black", sans-serif;
 $dark-blue: rgba(30, 40, 120,1.0);
 $dark-red: rgba(120, 40, 30,1.0);
 
@@ -28,7 +28,7 @@ body {
 }
 
 .addLikeOrChange {
-  %textarea {
+  textarea {
     display: inline-block;
     margin: 20px;
   }
@@ -36,4 +36,8 @@ body {
   .btn {
     margin: 20px;
   }
+}
+
+ul {
+  text-align: left;
 }

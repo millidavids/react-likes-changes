@@ -13,16 +13,15 @@ var LikesAndChanges = React.createClass({displayName: "LikesAndChanges",
       }.bind(this)
     });
   },
-  handleLikeOrChangeClick: function(data) {
+  handleLikeOrChangeClick: function(lorc) {
     var likes_and_changes = this.state.data;
-    likes_and_changes.push(data);
+    likes_and_changes.push(lorc);
     this.setState({data: likes_and_changes}, function() {
-      console.log(likes_and_changes);
       $.ajax({
         url: this.props.url,
         dataType: 'json',
         type: 'POST',
-        data: likes_and_changes,
+        data: lorc,
         success: function(data) {
           this.loadLikesAndChangesFromServer;
         }.bind(this),
@@ -31,7 +30,6 @@ var LikesAndChanges = React.createClass({displayName: "LikesAndChanges",
         }.bind(this)
       });
     });
-    this.loadLikesAndChangesFromServer();
   },
   getInitialState: function() {
     return {data: []};
@@ -39,13 +37,41 @@ var LikesAndChanges = React.createClass({displayName: "LikesAndChanges",
   componentDidMount: function() {
     this.loadLikesAndChangesFromServer();
   },
+  getLikes: function() {
+    var likes = [];
+    for (object in this.state.data) {
+      if (object.type === 'like'){
+        likes.push(object);
+      }
+    }
+    return likes;
+  },
+  getChanges: function() {
+    var changes = [];
+    for (object in this.state.data) {
+      if (object.type === 'change'){
+        changes.push(object);
+      }
+    }
+    return changes;
+  },
   render: function() {
+    var likes = this.state.data.filter(function(like) {
+      if (like.type === 'Like') {
+        return like.text;
+      }
+    });
+    var changes = this.state.data.filter(function(change) {
+      if (change.type === 'Change') {
+        return change.text;
+      }
+    });
     return (
       React.createElement("div", {className: "likesAndChanges"}, 
         React.createElement("h1", null, "Likes and Changes"), 
         React.createElement(AddLikeOrChange, {onAddLikeOrChangeSubmit: this.handleLikeOrChangeClick}), 
-        React.createElement(Likes, null), 
-        React.createElement(Changes, null)
+        React.createElement(Likes, {data: likes}), 
+        React.createElement(Changes, {data: changes})
       )
     );
   }
@@ -54,7 +80,7 @@ var LikesAndChanges = React.createClass({displayName: "LikesAndChanges",
 var AddLikeOrChange = React.createClass({displayName: "AddLikeOrChange",
   handleSubmit: function(e) {
     e.preventDefault(e);
-    var type = $(document.activeElement)[0].name
+    var type = $(document.activeElement)[0].value
     var text = this.refs.text.getDOMNode().value.trim();
     if (!text) {
       return;
@@ -67,8 +93,8 @@ var AddLikeOrChange = React.createClass({displayName: "AddLikeOrChange",
     return (
       React.createElement("form", {className: "addLikeOrChange form-group", onSubmit: this.handleSubmit}, 
         React.createElement("textarea", {className: "form-control", cols: "40", rows: "5", placeholder: "Say something...", ref: "text"}), 
-        React.createElement("input", {name: "like", type: "submit", className: "btn btn-primary", value: "Like"}), 
-        React.createElement("input", {name: "change", type: "submit", className: "btn btn-danger", value: "Change"})
+        React.createElement("input", {type: "submit", className: "btn btn-primary", value: "Like"}), 
+        React.createElement("input", {type: "submit", className: "btn btn-danger", value: "Change"})
       )
     );
   }
@@ -76,10 +102,21 @@ var AddLikeOrChange = React.createClass({displayName: "AddLikeOrChange",
 
 var Likes = React.createClass({displayName: "Likes",
   render: function() {
+    var likeNodes = this.props.data.map(function(like, index) {
+      return (
+        React.createElement("li", {key: index}, 
+          React.createElement("i", {className: " fa-li fa fa-thumbs-o-up"}), 
+          like.text
+        )
+      );
+    });
     return (
       React.createElement("div", {className: "likes col-xs-6"}, 
         React.createElement("h3", null, "Likes"), 
-        React.createElement("hr", null)
+        React.createElement("hr", null), 
+        React.createElement("ul", {className: "fa-ul"}, 
+          likeNodes
+        )
       )
     )
   }
@@ -87,10 +124,21 @@ var Likes = React.createClass({displayName: "Likes",
 
 var Changes = React.createClass({displayName: "Changes",
   render: function() {
+    var changeNodes = this.props.data.map(function(change, index) {
+      return (
+        React.createElement("li", {key: index}, 
+          React.createElement("i", {className: "fa-li"}, String.fromCharCode(916)), 
+          change.text
+        )
+      );
+    });
     return (
       React.createElement("div", {className: "changes col-xs-6"}, 
         React.createElement("h3", null, "Changes"), 
-        React.createElement("hr", null)
+        React.createElement("hr", null), 
+        React.createElement("ul", {className: "fa-ul"}, 
+          changeNodes
+        )
       )
     );
   }
