@@ -15,7 +15,7 @@ body {
   .addLikeOrChange textarea {
     display: inline-block;
     margin: 20px;
-    font-size: 120%; }
+    font-size: 100%; }
   .addLikeOrChange .btn-lg {
     font-size: 150%; }
 
@@ -30,3 +30,8 @@ ul {
 
 hr {
   border-top: 2px solid #ccc; }
+
+.btn-default {
+  position: fixed;
+  left: 3%;
+  top: 3%; }

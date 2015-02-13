@@ -41,6 +41,7 @@ var LikesAndChanges = React.createClass({
     });
     return (
       <div className='likesAndChanges'>
+        <button className='btn btn-default hidden-print' id='print'>Print</button>
         <AddLikeOrChange onAddLikeOrChangeSubmit={this.handleLikeOrChangeClick} />
         <Likes data={likes} />
         <Changes data={changes} />
@@ -67,7 +68,6 @@ var AddLikeOrChange = React.createClass({
         <div className='row'>
           <textarea className='form-control hidden-print' placeholder='Say something...' ref='text' />
         </div>
-        <button className='btn btn-default hidden-print' id='print'>Print</button>
         <div className='row'>
           <div className='col-xs-6'>
             <input type="submit" className='btn btn-lg btn-primary' value='Like' />
