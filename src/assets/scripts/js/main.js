@@ -65,8 +65,9 @@ var AddLikeOrChange = React.createClass({displayName: "AddLikeOrChange",
     return (
       React.createElement("form", {className: "addLikeOrChange form-group", onSubmit: this.handleSubmit}, 
         React.createElement("div", {className: "row"}, 
-          React.createElement("textarea", {className: "form-control", cols: "40", rows: "2", placeholder: "Say something...", ref: "text"})
+          React.createElement("textarea", {className: "form-control hidden-print", placeholder: "Say something...", ref: "text"})
         ), 
+        React.createElement("button", {className: "btn btn-default hidden-print", id: "print"}, "Print"), 
         React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-xs-6"}, 
             React.createElement("input", {type: "submit", className: "btn btn-lg btn-primary", value: "Like"})
@@ -128,3 +129,7 @@ React.render(
   React.createElement(LikesAndChanges, null),
   document.body
 );
+
+$('#print').click(function() {
+  window.print();
+});

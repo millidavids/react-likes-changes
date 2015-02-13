@@ -32,3 +32,7 @@ ul {
 
 hr {
   border-top: 2px solid #ccc; }
+
+@media print {
+  .likeAndChanges {
+    display: hidden; } }
