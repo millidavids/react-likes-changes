@@ -5,8 +5,13 @@ $dark-red: rgba(120, 40, 30,1.0);
 body {
   font-family: $default-font;
   width: auto;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 150px;
+  margin-right: 150px;
+
+  @media (max-width: 768px) {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
 }
 
 .likesAndChanges {
@@ -36,6 +41,14 @@ body {
 
 .changes {
   color: $dark-red;
+}
+
+.likes, .changes {
+  white-space: pre-wrap; /* css-3 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
 ul {
