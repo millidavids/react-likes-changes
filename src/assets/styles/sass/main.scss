@@ -20,7 +20,9 @@ body {
   width: 100%;
 
   textarea {
-    font-size: 150%;
+    display: inline-block;
+    margin: 20px;
+    font-size: 120%;
   }
 
   .btn-lg {
@@ -36,23 +38,10 @@ body {
   color: $dark-red;
 }
 
-.addLikeOrChange {
-  textarea {
-    display: inline-block;
-    margin: 20px;
-  }
-}
-
 ul {
   text-align: left;
 }
 
 hr {
   border-top: 2px solid #ccc;
-}
-
-@media print {
-  .likeAndChanges {
-    display: hidden;
-  }
 }

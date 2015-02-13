@@ -13,7 +13,9 @@ body {
 .addLikeOrChange {
   width: 100%; }
   .addLikeOrChange textarea {
-    font-size: 150%; }
+    display: inline-block;
+    margin: 20px;
+    font-size: 120%; }
   .addLikeOrChange .btn-lg {
     font-size: 150%; }
 
@@ -23,16 +25,8 @@ body {
 .changes {
   color: #78281e; }
 
-.addLikeOrChange textarea {
-  display: inline-block;
-  margin: 20px; }
-
 ul {
   text-align: left; }
 
 hr {
   border-top: 2px solid #ccc; }
-
-@media print {
-  .likeAndChanges {
-    display: hidden; } }
